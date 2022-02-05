@@ -18,6 +18,8 @@ while running==True:
                 os.system(wincommand)
     def echo():
         echo=input("Echo your message: ")
+        for i in range(51):
+            print(" ")
         print(echo)
     def speedtest():
         import webbrowser
