@@ -8,4 +8,6 @@ Current features:
 
 This project is at an early stage, meaning that soonly more features will be added!
 
+Tested in Python 3.10.1.
+
 Licensed with MIT License. You are permitted to use this script commercially or personally, as well as able to fork in case of improvements and/or added features.
