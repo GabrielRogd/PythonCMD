@@ -6,4 +6,6 @@ Current features:
 - windows (CMD Mode): Emulate Windows commands that you would normally write in a Windows CMD (Executing commands opens a separate Windows CMD shell)
 - speedtest: Opens a web page of the speedtesting platform of your choice.
 
+This project is at an early stage, meaning that soonly more features will be added!
+
 Licensed with MIT License. You are permitted to use this script commercially or personally, as well as able to fork in case of improvements and/or added features.
