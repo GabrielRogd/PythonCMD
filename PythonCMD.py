@@ -21,6 +21,9 @@ while running==True:
         for i in range(51):
             print(" ")
         print(echo)
+    def cls():
+        for i in range(101):
+            print(" ")
     def speedtest():
         import webbrowser
         speedtest=input("Choose your desired speedtesting platform (speedtest.net, fast.com): ")
@@ -34,7 +37,7 @@ while running==True:
             url=speedtest
             webbrowser.open_new(url)
     command=input(">>>")
-    if command=="help" or command=="about" or command=="windows" or command=="echo" or command=="speedtest":
+    if command=="help" or command=="about" or command=="windows" or command=="echo" or command=="cls" or command=="speedtest":
         result=eval(command+"()")
     elif command=="pythoncmd":
         print("You have to be in Windows CMD Mode (Command: windows) in order to execute this command!")
