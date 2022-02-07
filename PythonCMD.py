@@ -8,7 +8,7 @@ while running==True:
     def windows():
         import os
         windowsmode=True
-        print("Welcome to PythonCMD Windows Mode!\n\nAny command you run will launch on a separate Windows command shell.\n\nTo exit Windows Mode, type *pythoncmd*")
+        print("Welcome to PythonCMD Windows Mode!\n\nTo exit Windows Mode, type *pythoncmd*")
         while windowsmode==True:
             wincommand=input("WindowsMode>")
             if wincommand=="pythoncmd":
@@ -42,4 +42,3 @@ while running==True:
         print("Type a command.")
     else:
         print("Invalid command!")
-
