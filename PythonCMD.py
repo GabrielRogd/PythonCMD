@@ -2,7 +2,7 @@ running=True
 print("Welcome to PythonCMD!")
 while running==True:
     def help():
-        print("help - Displays this help dialog\nabout - Displays some info around PythonCMD\nwindows - Switch to Windows CMD Mode so you can use Windows commands within PythonCMD (Upon command execution, a second shell will be opened to execute the command)\npythoncmd - Switch to PythonCMD mode (You have to be in Windows CMD Mode in order to execute this command")
+        print("help - Displays this help dialog\nabout - Displays some info around PythonCMD\nwindows - Switch to Windows CMD Mode so you can use Windows commands within PythonCMD\necho - Broadcast your message\ncls - Clear Python shell")
     def about():
         print("PythonCMD is a Python-based command prompt concept with lots of useful commands and has the goal to simulate the Windows command prompt feeling into Python.")
     def windows():
@@ -11,7 +11,7 @@ while running==True:
         print("Welcome to PythonCMD Windows Mode!\n\nTo exit Windows Mode, type *pythoncmd*")
         while windowsmode==True:
             wincommand=input("WindowsMode>")
-            if wincommand=="pythoncmd":
+            if wincommand=="pythoncmd" or wincommand=="exit":
                 windowsmode=False
                 print("Exited Windows CMD Mode")
             else:
