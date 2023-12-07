@@ -79,7 +79,8 @@ while running==True:
         print("Ping:", int(speed.results.ping))
         print("Download Speed:", (int(speed.download() / 1000000)), "Mbps")
         print("Upload Speed:", (int(speed.upload() / 1000000)), "Mbps")
-    command=input(">>>")
+
+    command=input(">>>") # PythonCMD input
     
     # if CONDITIONS
     
