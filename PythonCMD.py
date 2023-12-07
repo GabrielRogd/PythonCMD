@@ -63,7 +63,15 @@ while running==True:
                 print("")
     
     def speedtest(): # Speedtest internet connection
-        import speedtest
+        try:
+            import speedtest
+        except:
+            print("speedtest-cli not found. Downloading...")
+            import subprocess
+            import sys
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "speedtest-cli"])
+            clear()
+            import speedtest
         speed=speedtest.Speedtest()
         servers=[]
         speed.get_servers(servers)
