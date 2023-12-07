@@ -33,6 +33,8 @@ while running==True:
                 print("Exited Python CLI Mode")
             elif pycommand in globals():
                 print("To use these commands, exit Python CLI Mode (pythoncmd) and try again.")
+            elif pycommand=="":
+                print("No input provided.")
             else:
                 try:
                     eval(pycommand)
@@ -41,16 +43,14 @@ while running==True:
     
     def echo(): # Echo message
         echo=input("Echo your message: ")
-        clear=False
-        while clear==False:
-            clear_prompt=input("Do you want to clear the window before echoing? y or n? ")
+        prompt=1
+        while prompt==1:
+            clear_prompt=input("Do you want to clear the window before echoing? y (Yes) or n (No)? ")
             if clear_prompt=="y":
                 clear()
-                clear=True
+                prompt=0
             elif clear_prompt=="n":
-                clear=True
-            else:
-                print("y (Yes) or n (No)?")
+                prompt=0
         print(echo)
     
     def clear(): # Clear shell
