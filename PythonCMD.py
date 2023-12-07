@@ -1,47 +1,87 @@
 running=True
+exit_aliases=["pythoncmd","quit","exit"]
+clear_aliases=["clear","cls"]
+commands=["help","about","windows","python","echo","speedtest"]
 print("Welcome to PythonCMD!")
+
 while running==True:
-    def help():
-        print("help - Displays this help dialog\nabout - Displays some info around PythonCMD\nwindows - Switch to Windows CMD Mode so you can use Windows commands within PythonCMD\necho - Broadcast your message\ncls - Clear Python shell")
-    def about():
+    def help(): # Help
+        print("help - Displays this help dialog\nabout - Displays some info around PythonCMD\nwindows - Switch to Windows CMD Mode so you can use Windows commands within PythonCMD\npython - Switch to Python CLI Mode in order to execute any python command as if you weren't running anything\necho - Broadcast your message\nspeedtest - Test your internet connection (requires speedtest-cli library)\ncls / clear - Clear Python shell (only works on Python shell running on Windows)")
+    
+    def about(): # About PythonCMD
         print("PythonCMD is a Python-based command prompt concept with lots of useful commands and has the goal to simulate the Windows command prompt feeling into Python.")
-    def windows():
+    
+    def windows(): # Windows CMD Mode (ONLY AVAILABLE IN WINDOWS)
         import os
         windowsmode=True
         print("Welcome to PythonCMD Windows Mode!\n\nTo exit Windows Mode, type *pythoncmd*")
         while windowsmode==True:
             wincommand=input("WindowsMode>")
-            if wincommand=="pythoncmd" or wincommand=="exit":
+            if wincommand in exit_aliases:
                 windowsmode=False
                 print("Exited Windows CMD Mode")
             else:
                 os.system(wincommand)
-    def echo():
+    
+    def python(): # Python CLI Mode
+        pythonmode=True
+        print("Welcome to Python CLI Mode!\n\nTo exit Python CLI Mode, type *pythoncmd*")
+        while pythonmode==True:
+            pycommand=input(">>>")
+            if pycommand in exit_aliases:
+                pythonmode=False
+                print("Exited Python CLI Mode")
+            elif pycommand in globals():
+                print("To use these commands, exit Python CLI Mode (pythoncmd) and try again.")
+            else:
+                try:
+                    eval(pycommand)
+                except:
+                    print("Syntax error! Fix it.")
+    
+    def echo(): # Echo message
         echo=input("Echo your message: ")
-        for i in range(51):
-            print(" ")
+        clear=False
+        while clear==False:
+            clear_prompt=input("Do you want to clear the window before echoing? y or n? ")
+            if clear_prompt=="y":
+                clear()
+                clear=True
+            elif clear_prompt=="n":
+                clear=True
+            else:
+                print("y (Yes) or n (No)?")
         print(echo)
-    def cls():
-        for i in range(101):
-            print(" ")
-    def speedtest():
-        import webbrowser
-        speedtest=input("Choose your desired speedtesting platform (speedtest.net, fast.com): ")
-        if speedtest=="Speedtest.net" or speedtest=="speedtest.net" or speedtest=="SPEEDTEST.NET" or speedtest=="Ookla" or speedtest=="ookla" or speedtest=="OOKLA" or speedtest=="Speedtest" or speedtest=="speedtest" or speedtest=="SPEEDTEST":
-            url="speedtest.net"
-            webbrowser.open_new(url)
-        elif speedtest=="Fast.com" or speedtest=="fast.com" or speedtest=="FAST.COM" or speedtest=="Fast" or speedtest=="fast" or speedtest=="FAST":
-            url="fast.com"
-            webbrowser.open_new(url)
-        else:
-            url=speedtest
-            webbrowser.open_new(url)
+    
+    def clear(): # Clear shell
+        try:
+            import os
+            clear_command="cls"
+            os.system(clear_command)
+        except:
+            for i in range(1000):
+                print("")
+    
+    def speedtest(): # Speedtest internet connection
+        import speedtest
+        speed=speedtest.Speedtest()
+        servers=[]
+        speed.get_servers(servers)
+        speed.get_best_server()
+        print("Ping:", int(speed.results.ping))
+        print("Download Speed:", (int(speed.download() / 1000000)), "Mbps")
+        print("Upload Speed:", (int(speed.upload() / 1000000)), "Mbps")
     command=input(">>>")
-    if command=="help" or command=="about" or command=="windows" or command=="echo" or command=="cls" or command=="speedtest":
+    
+    # if CONDITIONS
+    
+    if command in commands:
         result=eval(command+"()")
+    elif command in clear_aliases:
+        result=eval("clear()")
     elif command=="pythoncmd":
-        print("You have to be in Windows CMD Mode (Command: windows) in order to execute this command!")
+        print("You have to be in Windows CMD Mode (Command: windows) or Python CLI Mode (Command: python) in order to execute this command!")
     elif command=="":
         print("Type a command.")
     else:
-        print("Invalid command!")
+        print("Invalid command! For reference, type *help* to see all available commands.")
