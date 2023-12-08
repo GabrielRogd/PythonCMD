@@ -1,7 +1,7 @@
 running=True
 exit_aliases=["pythoncmd","quit","exit"]
 clear_aliases=["clear","cls"]
-commands=["help","about","windows","python","echo","speedtest"]
+commands=["help","about","windows","python","echo","speedtest","notepad","weather","real_time","winupdate"]
 print("Welcome to PythonCMD!")
 
 while running==True:
@@ -31,7 +31,7 @@ while running==True:
             if pycommand in exit_aliases:
                 pythonmode=False
                 print("Exited Python CLI Mode")
-            elif pycommand in globals():
+            elif any(word in pycommand for word in commands) and pycommand.endswith("()"):
                 print("To use these commands, exit Python CLI Mode (pythoncmd) and try again.")
             elif pycommand=="":
                 print("No input provided.")
@@ -59,8 +59,7 @@ while running==True:
             clear_command="cls"
             os.system(clear_command)
         except:
-            for i in range(1000):
-                print("")
+            range(1000)(print("\n"))
     
     def speedtest(): # Speedtest internet connection
         try:
@@ -76,9 +75,49 @@ while running==True:
         servers=[]
         speed.get_servers(servers)
         speed.get_best_server()
+        print("Selected server:", speed.results.server["sponsor"])
         print("Ping:", int(speed.results.ping))
         print("Download Speed:", (int(speed.download() / 1000000)), "Mbps")
         print("Upload Speed:", (int(speed.upload() / 1000000)), "Mbps")
+
+    def winupdate(): # Windows update disabler. ONLY AVAILABLE IN WINDOWS
+        update_menu=True
+        import ctypes, sys
+        def is_admin():
+            try:
+                return ctypes.windll.shell32.IsUserAnAdmin()
+            except:
+                return False
+        if is_admin():
+            print("You are running PythonCMD as administrator.")
+            print("Do you want to disable Windows Updates? y (Yes) or n (No)?")
+            print("If you care about your computer's security, don't use this option further. Type n (No) to exit.")
+            while update_menu==True:
+                disable_updates=input(">>>")
+                if disable_updates=="y":
+                    import os
+                    os.system("sc config wuauserv start= disabled")
+                    print("Windows Updates have been disabled.")
+                    update_menu=False
+                elif disable_updates=="n":
+                    print("Windows Updates have not been disabled. Exiting Windows Update menu...")
+                    update_menu=False
+                else:
+                    print("Invalid input.")
+        else:
+            print("You are not running PythonCMD as administrator.")
+            print("PythonCMD will be closed and relaunched with administrator rights.")
+            print("Press enter, launch as admin, then type *pc* again to continue.")
+            print("Type *pythoncmd* to exit Windows Update menu.")
+            choice=input()
+            if choice=="":
+                ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+                sys.exit()
+            while update_menu==True:
+                if choice in exit_aliases:
+                    update_menu=False
+                    print("Exited Windows Update menu.")
+
 
     command=input(">>>") # PythonCMD input
     
@@ -92,5 +131,7 @@ while running==True:
         print("You have to be in Windows CMD Mode (Command: windows) or Python CLI Mode (Command: python) in order to execute this command!")
     elif command=="":
         print("Type a command.")
+    elif command in exit_aliases:
+        running=False
     else:
         print("Invalid command! For reference, type *help* to see all available commands.")
