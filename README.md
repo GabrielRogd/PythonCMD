@@ -2,7 +2,7 @@
 A Python-based command prompt concept which includes Windows (and Python) command emulation.
 
 Current features:
-- echo: Input your message and it will be clearly outputted in Python
+- echo: Input your message and it will be clearly outputted if you wish (you have the option to whether clear the shell before the message or to not)
 - windows (CMD Mode): Emulate Windows commands that you would normally write in a Windows CMD (Requires Windows host); kind of like a command prompt within a command prompt within a shell
 - python: Switch to a Python CLI environment so you can execute Python commands freely (In case of any syntax error, PythonCMD has a failsafe in place and will not crash but will instead output syntax error)
 - speedtest: Test your internet connection (requires speedtest-cli library)
