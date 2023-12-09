@@ -7,6 +7,9 @@ Current features:
 - python: Switch to a Python CLI environment so you can execute Python commands freely (In case of any syntax error, PythonCMD has a failsafe in place and will not crash but will instead output syntax error)
 - speedtest: Test your internet connection (requires speedtest-cli library)
 - cls / clear - Clear Python shell (only works on Python shell running on Windows)
+- winupdate - Disable Windows Update services (wuauserv service) effortlessly. In this case, PythonCMD can automatically re-launch with administrator rights which is necessary to disable the service (Requires Windows host)
+
+If you miss out on libraries that are necessary to run some commands, don't worry! They will automatically be downloaded through pip. Hence there's no requirements.txt file :)
 
 This project is at an early stage, meaning that soonly more features will be added!
 
