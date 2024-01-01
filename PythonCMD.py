@@ -1,12 +1,12 @@
 running=True
 exit_aliases=["pythoncmd","quit","exit"]
 clear_aliases=["clear","cls"]
-commands=["help","about","windows","python","echo","speedtest","notepad","weather","real_time","winupdate"]
+commands=["help","about","windows","python","echo","speedtest","notepad","weather","winupdate"]
 print("Welcome to PythonCMD!")
 
 while running==True:
     def help(): # Help
-        print("help - Displays this help dialog\nabout - Displays some info around PythonCMD\nwindows - Switch to Windows CMD Mode so you can use Windows commands within PythonCMD\npython - Switch to Python CLI Mode in order to execute any python command as if you weren't running anything\necho - Broadcast your message\nspeedtest - Test your internet connection (requires speedtest-cli library)\ncls / clear - Clear Python shell (only works on Python shell running on Windows)")
+        print("help - Displays this help dialog\nabout - Displays some info around PythonCMD\nwindows - Switch to Windows CMD Mode so you can use Windows commands within PythonCMD\npython - Switch to Python CLI Mode in order to execute any python command as if you weren't running anything\necho - Broadcast your message\nspeedtest - Test your internet connection (requires speedtest-cli library)\ncls / clear - Clear Python shell (only works on Python shell running on Windows)\nwinupdate - Effortlessly disable Windows Updates (use at your own risk, requires Windows host)\n")
     
     def about(): # About PythonCMD
         print("PythonCMD is a Python-based command prompt concept with lots of useful commands and has the goal to simulate the Windows command prompt feeling into Python.")
