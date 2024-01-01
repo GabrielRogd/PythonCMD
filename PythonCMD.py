@@ -107,7 +107,7 @@ while running==True:
         else:
             print("You are not running PythonCMD as administrator.")
             print("PythonCMD will be closed and relaunched with administrator rights.")
-            print("Press enter, launch as admin, then type *pc* again to continue.")
+            print("Press enter, launch as admin, then type *winupdate* again to continue.")
             print("Type *pythoncmd* to exit Windows Update menu.")
             choice=input()
             if choice=="":
